@@ -223,3 +223,59 @@ Added support for several new functions in NRQL drop rule queries. You can now u
 - [ ] Code references use backticks
 - [ ] Links to related docs/PRs are included where relevant
 - [ ] PR title follows conventional commits format
+
+---
+
+## Prompt for Claude Code / AI Assistant
+
+Copy and paste the following prompt into a new Claude Code session (within this repo) to have it create a release note for you:
+
+```
+You are helping me create release notes for the New Relic docs-website repository.
+
+## Setup
+
+Read `RELEASE_NOTES_GUIDE.md` in the repo root. It contains all conventions, file naming, frontmatter format, and examples you must follow exactly.
+
+## Workflow
+
+### 1. Gather Information
+
+Ask me for:
+- **Product name** (e.g., Pipeline Control Gateway, Java agent, .NET agent)
+- **Version number** (e.g., 1.2.0)
+- **Release date** (YYYY-MM-DD format)
+- **Changes** — features, bug fixes, security updates, dependency upgrades
+- **Links** — related PRs, documentation pages, or download URLs (if any)
+
+### 2. Determine File Location
+
+- Find the correct subdirectory under `src/content/docs/release-notes/`
+- Check existing files in that directory to match the naming convention
+- If the subdirectory doesn't exist, create it along with an `index.mdx`
+
+### 3. Create the Release Note File
+
+- Use proper YAML frontmatter with `subject`, `releaseDate`, `version`, and `metaDescription`
+- Organize body content into logical sections using Markdown headings:
+  - `## New features and improvements` or `#### Support for X`
+  - `## Fixes`
+  - `## Security updates`
+- Use backticks for code references (package names, versions, function names)
+- Link to related PRs: `[#123](https://github.com/org/repo/pull/123)`
+- Link to related docs: `[doc title](/docs/path/to/page/)`
+
+### 4. Commit and PR
+
+- Create a new branch (never commit directly to `develop`)
+- Branch name format: `release-notes/<product>-<version>` (e.g., `release-notes/pcg-1.2.0`)
+- Commit message: `docs: add release notes for <Product> v<X.Y.Z>`
+- Offer to create a PR targeting the `develop` branch
+
+## Rules
+
+- Follow the patterns in `RELEASE_NOTES_GUIDE.md` exactly
+- Match the formatting style of existing release notes in the same subdirectory
+- Do not invent or assume changes — only document what the user provides
+- Keep descriptions clear, concise, and technical
+```
